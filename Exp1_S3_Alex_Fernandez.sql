@@ -2,7 +2,7 @@
 SELECT 
     TO_CHAR(c.numrut_cli, '999G999G999')|| '-' || c.dvrut_cli AS "RUT Cliente",
     INITCAP(c.nombre_cli) || ' ' || INITCAP(c.appaterno_cli) || ' ' || INITCAP(c.apmaterno_cli) AS "Nombre Completo Cliente",
-    INITCAP(c.direccion_cli) AS "Dirección Cliente",
+    INITCAP(c.direccion_cli) AS "Direcciï¿½n Cliente",
     TO_CHAR(c.renta_cli, '$999G999G999') AS "Renta Cliente",
     SUBSTR(LPAD(c.celular_cli, 9, '0'), 1, 2) || '-' ||
     SUBSTR(LPAD(c.celular_cli, 9, '0'), 3, 3) || '-' ||
@@ -21,10 +21,10 @@ ORDER BY INITCAP(c.nombre_cli) || ' ' ||
     INITCAP(c.apmaterno_cli);
 
 
--- CASO 2: Sueldo Promedio por Categoría de Empleado.
+-- CASO 2: Sueldo Promedio por Categorï¿½a de Empleado.
 
 SELECT
-    e.id_categoria_emp AS "CODIGO_CATEOGORIA",
+    e.id_categoria_emp AS "CODIGO_CATEGORIA",
     CASE e.id_categoria_emp
         WHEN 1 THEN 'Gerente'
         WHEN 2 THEN 'Supervisor'
@@ -60,10 +60,10 @@ SELECT
     TO_CHAR(ROUND(AVG(p.superficie),2), '999D00') AS "PROMEDIO_SUPERFICIE",
     TO_CHAR(ROUND(AVG(p.valor_arriendo / p.superficie)), '$999G999G999') AS "VALOR_ARRIENDO_M2",
     CASE
-        WHEN AVG(p.valor_arriendo / p.superficie) < 5000 THEN 'Económico'
+        WHEN AVG(p.valor_arriendo / p.superficie) < 5000 THEN 'Econï¿½mico'
         WHEN AVG(p.valor_arriendo / p.superficie) BETWEEN 5000 AND 10000 THEN 'Medio'
         ELSE 'Alto'
-    END AS "CLASIFICACIÓN"
+    END AS "CLASIFICACIï¿½N"
 FROM propiedad p
 GROUP BY p.id_tipo_propiedad
 HAVING AVG(p.valor_arriendo / p.superficie) > 1000
